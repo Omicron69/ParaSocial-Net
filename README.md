@@ -26,7 +26,40 @@ The system is a **research prototype and first filter** for researchers and supp
 
 - Domain-adaptive pre-training reduced perplexity **9.44 → 5.28 (44%)**.
 - Harm classifier AUC: parasocial 0.73, bullying 0.88, financial 0.87.
-- Outperformed off-the-shelf toxicity tools and a non-adapted baseline across all dimensions.
+- Outperformed a non-adapted baseline across all dimensions; generic toxicity tools could not represent parasocial or financial harm at all.
+- Typology–harm pattern validated (label vs prediction r = 0.80–0.99) and robust across the full 2.26-million-post corpus.
+
+## Repository structure
+
+```
+src/          lexicons.py, feats.py, clf.py
+notebooks/    01_ingest ... 10_baselines_scale
+harm_demo.py  interactive Gradio demo 
+```
+
+Data, trained models, and the anonymisation salt are not included, for privacy and file-size reasons.
+
+## Running the demo
+
+```
+pip install -r requirements.txt
+python harm_demo.py          # web UI (requires the trained model locally)
+python harm_demo.py --cli    # terminal version
+```
+
+## Method notes
+
+- Base model: XLM-RoBERTa, domain-adapted on the fan corpus (one epoch, 2.4M texts).
+- Class imbalance: harm is rare (<10% of posts, <1% severe), addressed with Focal loss, per-label positive weighting, and harm-stratified annotation.
+- Anonymisation: usernames were pseudonymised via salted SHA-256 at ingestion.
+
+## Ethics
+
+All source data were public Reddit posts, pseudonymised at ingestion. Raw data, annotated data, model weights, and the anonymisation salt are not published. The typology carries a dual-use tension: the same patterns that could help protect performers from coordinated harassment could be misused to target vulnerable fans commercially. Predatory applications are out of scope by design.
+
+## Licence
+
+All rights reserved (dissertation project).
 - Typology–harm pattern validated (label vs prediction r = 0.80–0.99) and robust across the full 2.26-million-post corpus.
 
 ## Repository structure
