@@ -1,0 +1,11 @@
+torch==2.5.1
+transformers
+pandas
+numpy
+scikit-learn
+umap-learn
+hdbscan
+matplotlib
+seaborn
+vaderSentiment
+gradio

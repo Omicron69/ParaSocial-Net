@@ -1,0 +1,17 @@
+.env
+*.salt
+data/
+*.parquet
+*.jsonl
+*.csv
+models/
+*.pt
+*.bin
+*.safetensors
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+*.Zone.Identifier
+*.pdf
